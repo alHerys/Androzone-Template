@@ -44,7 +44,7 @@ class OnboardingView extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/'),
+                  onPressed: () => context.go('/login'),
                   child: const Text('Mulai Sekarang'),
                 ),
               ),
