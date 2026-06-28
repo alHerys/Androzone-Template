@@ -61,22 +61,44 @@ final TextStyle gayaTeks = GoogleFonts.inter(
 ```
 
 ### Penggunaan Luring (Offline / Tanpa Internet)
-Untuk menghindari kegagalan pemuatan font karena masalah koneksi internet:
-1. Unduh berkas font `.ttf` (misalnya Inter-Regular.ttf) dari situs Google Fonts.
-2. Letakkan berkas font tersebut di dalam direktori `assets/fonts/`.
-3. Daftarkan aset font tersebut di dalam berkas `pubspec.yaml`:
-   ```yaml
-   flutter:
-     fonts:
-       - family: Inter
-         fonts:
-           - asset: assets/fonts/Inter-Regular.ttf
-   ```
-4. Tambahkan baris konfigurasi berikut di fungsi `main()` sebelum `runApp` dijalankan untuk memberi tahu library agar menggunakan berkas lokal:
-   ```dart
-   import 'package:flutter/services.dart';
-   // Konfigurasi lisensi font jika diperlukan
-   ```
+
+Untuk menghindari kegagalan pemuatan font karena masalah koneksi internet pada perangkat pengguna, Anda dapat membungkus berkas font `.ttf` langsung ke dalam aset aplikasi. Ikuti langkah-langkah detail berikut:
+
+#### Langkah 1: Unduh Berkas Font
+1. Kunjungi situs resmi [Google Fonts](https://fonts.google.com).
+2. Cari keluarga font yang Anda gunakan (contoh: **Inter**).
+3. Unduh berkas font tersebut (format `.zip`) dan ekstrak berkas `.ttf` dari berat/gaya font yang Anda butuhkan (seperti `Inter-Regular.ttf`, `Inter-Bold.ttf`, `Inter-SemiBold.ttf`).
+4. **PENTING**: Jangan ubah nama berkas `.ttf` tersebut. Paket `google_fonts` mencocokkan berkas secara presisi berdasarkan nama asli dari API Google Fonts.
+
+#### Langkah 2: Pindahkan ke Folder Proyek
+1. Buat direktori bernama `google_fonts` pada root proyek Anda (atau buat folder `assets/google_fonts/`).
+2. Masukkan semua berkas `.ttf` yang telah diunduh ke dalam direktori tersebut.
+
+#### Langkah 3: Daftarkan di `pubspec.yaml`
+Daftarkan direktori tersebut di dalam bagian `assets:` pada berkas `pubspec.yaml` Anda (cukup daftarkan foldernya saja, tidak perlu mendaftarkan setiap berkas satu per satu, dan **JANGAN** menggunakan bagian `fonts:` bawaan Flutter karena akan ditangani secara otomatis oleh paket `google_fonts`):
+```yaml
+flutter:
+  assets:
+    - google_fonts/  # Jika diletakkan di root proyek
+    # ATAU
+    - assets/google_fonts/ # Jika diletakkan di dalam folder assets
+```
+
+#### Langkah 4: Matikan Runtime Fetching di Kode Dart
+Untuk memastikan aplikasi Anda tidak pernah melakukan panggilan jaringan internet (HTTP request) dan memaksa pemuatan font dari aset lokal, tambahkan konfigurasi berikut di fungsi `main()` pada berkas `lib/main.dart` sebelum `runApp` dijalankan:
+```dart
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Impor paket Google Fonts
+
+void main() {
+  // Tambahkan baris ini untuk mematikan pengunduhan font via internet secara dinamis
+  GoogleFonts.config.allowRuntimeFetching = false;
+
+  runApp(const MyApp());
+}
+```
+
+Setelah konfigurasi di atas selesai, Anda tetap dapat memanggil font seperti biasa di kode UI Anda (misalnya `GoogleFonts.inter()`), dan paket `google_fonts` akan secara otomatis mencari berkas pencocokan lokal di dalam folder aset yang telah Anda daftarkan.
 
 ---
 
