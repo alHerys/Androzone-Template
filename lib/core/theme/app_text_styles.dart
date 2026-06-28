@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
-  static TextStyle get _baseStyle => GoogleFonts.inter();
+  static TextStyle get _baseStyle => GoogleFonts.inter(); // Ganti font disini
 
   static TextStyle get heading1 => _baseStyle.copyWith(
         fontSize: 32,

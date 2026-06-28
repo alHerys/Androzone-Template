@@ -102,6 +102,10 @@ Proyek ini menggunakan paket `flutter_native_splash` untuk memodifikasi splash s
      flutter pub run flutter_native_splash:create
      ```
 
+Tautan dokumentasi resmi untuk pengaturan ikon dan splash screen:
+- [Dokumentasi Resmi Icons Launcher](https://pub.dev/packages/icons_launcher)
+- [Dokumentasi Resmi Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
+
 ---
 
 ## Tautan Dokumentasi Resmi
@@ -110,10 +114,6 @@ Gunakan tautan di bawah ini untuk mempelajari dasar teori dari masing-masing pus
 - [Dokumentasi Resmi Provider](https://pub.dev/packages/provider)
 - [Dokumentasi Resmi Riverpod](https://riverpod.dev)
 - [Dokumentasi Resmi BLoC](https://bloclibrary.dev)
-
-Tautan dokumentasi resmi untuk pengaturan ikon dan splash screen:
-- [Dokumentasi Resmi Icons Launcher](https://pub.dev/packages/icons_launcher)
-- [Dokumentasi Resmi Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 
 ---
 

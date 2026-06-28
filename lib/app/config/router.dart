@@ -12,27 +12,33 @@ final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/splash',
-      builder: (BuildContext context, GoRouterState state) => const SplashView(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const SplashView(),
     ),
     GoRoute(
       path: '/onboarding',
-      builder: (BuildContext context, GoRouterState state) => const OnboardingView(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const OnboardingView(),
     ),
     GoRoute(
       path: '/',
-      builder: (BuildContext context, GoRouterState state) => const HomeView(),
+      builder: (BuildContext context, GoRouterState state) => 
+          const HomeView(),
     ),
     GoRoute(
       path: '/provider',
-      builder: (BuildContext context, GoRouterState state) => const ProviderCounterView(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const ProviderCounterView(),
     ),
     GoRoute(
       path: '/riverpod',
-      builder: (BuildContext context, GoRouterState state) => const RiverpodCounterView(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const RiverpodCounterView(),
     ),
     GoRoute(
       path: '/bloc',
-      builder: (BuildContext context, GoRouterState state) => const BlocCounterView(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const BlocCounterView(),
     ),
   ],
 );
