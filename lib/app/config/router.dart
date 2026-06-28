@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/onboarding/views/onboarding_view.dart';
-import '../../features/auth/views/login_view.dart';
-import '../../features/auth/views/register_view.dart';
-import '../../features/dashboard/views/dashboard_view.dart';
+import '../../ui/features/onboarding/views/onboarding_view.dart';
+import '../../ui/features/auth/views/login_view.dart';
+import '../../ui/features/auth/views/register_view.dart';
+import '../../ui/features/dashboard/views/dashboard_view.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/onboarding',

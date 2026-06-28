@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../view_models/auth_notifier.dart';
-import '../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -38,8 +38,17 @@ class _RegisterViewState extends State<RegisterView> {
         _passwordController.text,
       );
 
-      if (mounted && success) {
-        context.go('/dashboard');
+      if (mounted) {
+        if (success) {
+          context.go('/dashboard');
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(authNotifier.errorMessage ?? 'Registrasi gagal. Coba lagi.'),
+              backgroundColor: Colors.redAccent,
+            ),
+          );
+        }
       }
     }
   }

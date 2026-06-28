@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../view_models/auth_notifier.dart';
-import '../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -37,8 +37,8 @@ class _LoginViewState extends State<LoginView> {
           context.go('/dashboard');
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Email atau password salah. Coba lagi.'),
+            SnackBar(
+              content: Text(authNotifier.errorMessage ?? 'Email atau password salah. Coba lagi.'),
               backgroundColor: Colors.redAccent,
             ),
           );
