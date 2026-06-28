@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/riverpod_counter_provider.dart';
-import '../../../core/theme/app_text_styles.dart';
+import 'package:provider/provider.dart';
+import '../view_models/provider_counter_notifier.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
-class RiverpodCounterView extends ConsumerWidget {
-  const RiverpodCounterView({super.key});
+class ProviderCounterView extends StatelessWidget {
+  const ProviderCounterView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(riverpodCounterProvider);
-    final counterNotifier = ref.read(riverpodCounterProvider.notifier);
+  Widget build(BuildContext context) {
+    final counterNotifier = context.watch<ProviderCounterNotifier>();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter Riverpod'),
+        title: const Text('Counter Provider'),
       ),
       body: Center(
         child: Padding(
@@ -27,7 +26,7 @@ class RiverpodCounterView extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                '$count',
+                '${counterNotifier.count}',
                 style: AppTextStyles.heading1.copyWith(fontSize: 72),
               ),
               const SizedBox(height: 40),

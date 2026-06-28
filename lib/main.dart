@@ -5,8 +5,8 @@ import 'package:provider/provider.dart' as legacy_provider;
 
 import 'app/config/router.dart';
 import 'core/theme/app_theme.dart';
-import 'features/counter_provider/view_models/provider_counter_notifier.dart';
-import 'features/counter_bloc/cubit/bloc_counter_cubit.dart';
+import 'ui/features/counter_provider/view_models/provider_counter_notifier.dart';
+import 'ui/features/counter_bloc/cubit/bloc_counter_cubit.dart';
 
 void main() {
   // 1. Riverpod: Menggunakan ProviderScope di tingkat root untuk mengelola status
