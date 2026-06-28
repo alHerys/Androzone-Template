@@ -2,47 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/auth_provider.dart';
-import '../../../core/theme/app_text_styles.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
-class LoginView extends ConsumerStatefulWidget {
-  const LoginView({super.key});
+class RegisterView extends ConsumerStatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  ConsumerState<LoginView> createState() => _LoginViewState();
+  ConsumerState<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends ConsumerState<LoginView> {
+class _RegisterViewState extends ConsumerState<RegisterView> {
   final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
+    _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  void _handleLogin() async {
+  void _handleRegister() async {
     if (_formKey.currentState!.validate()) {
-      final success = await ref.read(authProvider.notifier).login(
+      final success = await ref.read(authProvider.notifier).register(
+            _usernameController.text.trim(),
             _emailController.text.trim(),
             _passwordController.text,
           );
 
-      if (mounted) {
-        if (success) {
-          context.go('/dashboard');
-        } else {
-          final auth = ref.read(authProvider);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(auth.errorMessage ?? 'Email atau password salah. Coba lagi.'),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
-        }
+      if (mounted && success) {
+        context.go('/dashboard');
       }
     }
   }
@@ -52,6 +48,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
     final authState = ref.watch(authProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Daftar Akun'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.pop(),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -59,30 +62,40 @@ class _LoginViewState extends ConsumerState<LoginView> {
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Hero(
-                    tag: 'app-logo',
-                    child: Image.asset(
-                      'assets/icons/icon_launcher.png',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
                   Text(
-                    'Masuk Akun',
+                    'Buat Akun Baru',
                     style: AppTextStyles.heading2,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Gunakan email dan kata sandi Anda untuk mengakses dashboard.',
+                    'Lengkapi formulir di bawah ini untuk mendaftarkan akun baru Anda.',
                     style: AppTextStyles.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 32),
+                  TextFormField(
+                    controller: _usernameController,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    decoration: const InputDecoration(
+                      labelText: 'Nama Pengguna',
+                      hintText: 'nama_pengguna',
+                      prefixIcon: Icon(Icons.person_outline),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Nama pengguna wajib diisi';
+                      }
+                      if (value.trim().length < 3) {
+                        return 'Nama pengguna minimal 3 karakter';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -107,7 +120,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    textInputAction: TextInputAction.done,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       labelText: 'Kata Sandi',
                       hintText: 'Minimal 6 karakter',
@@ -132,11 +145,41 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       }
                       return null;
                     },
-                    onFieldSubmitted: (_) => _handleLogin(),
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    obscureText: _obscureConfirmPassword,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      labelText: 'Konfirmasi Kata Sandi',
+                      hintText: 'Ulangi kata sandi Anda',
+                      prefixIcon: const Icon(Icons.lock_clock_outlined),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirmPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureConfirmPassword = !_obscureConfirmPassword;
+                          });
+                        },
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Konfirmasi kata sandi wajib diisi';
+                      }
+                      if (value != _passwordController.text) {
+                        return 'Kata sandi tidak cocok';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (_) => _handleRegister(),
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
-                    onPressed: authState.isLoading ? null : _handleLogin,
+                    onPressed: authState.isLoading ? null : _handleRegister,
                     child: authState.isLoading
                         ? const SizedBox(
                             height: 20,
@@ -146,28 +189,9 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text('Masuk'),
+                        : const Text('Daftar'),
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Belum punya akun? ',
-                        style: AppTextStyles.bodyMedium,
-                      ),
-                      GestureDetector(
-                        onTap: () => context.push('/register'),
-                        child: Text(
-                          'Daftar di sini',
-                          style: AppTextStyles.labelLarge.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
