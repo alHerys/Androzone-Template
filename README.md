@@ -112,10 +112,3 @@ Gunakan tautan di bawah ini untuk mempelajari dasar teori dari masing-masing pus
 - [Dokumentasi Resmi Riverpod](https://riverpod.dev)
 - [Dokumentasi Resmi BLoC](https://bloclibrary.dev)
 
----
-
-## Referensi Video YouTube
-
-*(Bagian ini dapat diisi dengan tautan video YouTube pilihan untuk referensi belajar visual bagi peserta pelatihan atau tim pengembang)*
-- [Placeholder: Video Panduan Dasar State Management]()
-- [Placeholder: Video Pembahasan Komparasi Arsitektur Flutter]()
