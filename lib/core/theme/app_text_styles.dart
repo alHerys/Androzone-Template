@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
+/// Disini tempat teman-teman mengatur gaya tulisan (font) aplikasi nya
+/// Jadi yang teman-teman atur disini itu bakalan dipake di seluruh aplikasi
+/// Supaya konsisten dan enak nantinya. Kalian ga bakalan ngatur style dan decoration manual lagi
+/// Tapi kalo mau yang beda nantinya tinggal di timpa aja di style widget nya.
 class AppTextStyles {
-  static TextStyle get _baseStyle => GoogleFonts.inter();
+  static TextStyle get _baseStyle => GoogleFonts.inter(); // ganti font disini
 
   static TextStyle get heading1 => _baseStyle.copyWith(
         fontSize: 32,
