@@ -1,8 +1,6 @@
-# Template Starter Flutter: Perbandingan State Management
+# Template Starter Flutter Androzon Mobile Engineer 2026
 
-Proyek ini adalah template dasar Flutter yang dirancang untuk membandingkan tiga pustaka (library) pengelola status (*state management*) yang populer: Provider, Riverpod, dan BLoC (Cubit). 
-
-Tujuan utama proyek ini adalah memberikan contoh implementasi nyata berdampingan dari ketiga sistem tersebut agar Anda dapat menilai langsung kelebihan dan kekurangan masing-masing dalam kebutuhan proyek Anda.
+Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 2026.
 
 ---
 
