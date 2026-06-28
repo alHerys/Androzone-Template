@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                       Hero(
                         tag: 'app-logo',
                         child: Image.asset(
-                          'assets/images/logo.png',
+                          'assets/icons/icon_launcher.png',
                           height: 100,
                           width: 100,
                         ),
