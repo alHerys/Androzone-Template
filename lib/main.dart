@@ -55,7 +55,7 @@ class AppContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Starter Template Flutter',
+      title: 'Template Androzon Flutter',
       theme: AppTheme.lightTheme,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
