@@ -5,13 +5,55 @@ Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 
 ---
 
 ## Struktur Direktori
-
+ 
 Direktori proyek disusun menggunakan pendekatan berbasis fitur (*feature-first*) agar mudah dikembangkan dan dirapikan seiring bertambahnya modul.
-
-- **`lib/app/`**: Konfigurasi global aplikasi seperti pengaturan rute (*routing*) menggunakan GoRouter.
-- **`lib/core/`**: Bagian bersama yang mencakup desain sistem, tema warna, dan tipografi global.
-- **`lib/features/`**: Folder utama fitur aplikasi yang dibagi berdasarkan domain bisnis (seperti splash screen, onboarding, serta contoh fitur counter dan autentikasi).
-- **`assets/`**: Penyimpanan berkas statis gambar dan ikon aplikasi.
+ 
+```
+lib/
+├── main.dart                          # Entry point aplikasi
+├── app/
+│   └── config/
+│       └── router.dart                # Konfigurasi routing menggunakan GoRouter
+├── core/
+│   └── theme/
+│       ├── app_colors.dart            # Token warna global aplikasi
+│       ├── app_text_styles.dart       # Tipografi global aplikasi
+│       └── app_theme.dart             # Konfigurasi ThemeData Material 3
+└── ui/
+    └── features/
+        ├── onboarding/
+        │   └── views/
+        │       └── onboarding_view.dart
+        ├── home/
+        │   └── views/
+        │       └── home_view.dart
+        ├── counter_provider/
+        │   ├── view_models/
+        │   │   └── provider_counter_notifier.dart
+        │   └── views/
+        │       └── provider_counter_view.dart
+        ├── counter_riverpod/
+        │   ├── providers/
+        │   │   └── riverpod_counter_provider.dart
+        │   └── views/
+        │       └── riverpod_counter_view.dart
+        └── counter_bloc/
+            ├── cubit/
+            │   └── bloc_counter_cubit.dart
+            └── views/
+                └── bloc_counter_view.dart
+ 
+assets/
+├── images/          # Gambar dan splash screen
+└── icons/           # Ikon launcher aplikasi
+```
+ 
+### Penjelasan Folder Utama
+ 
+- **`lib/main.dart`**: Entry point aplikasi. Mendaftarkan `ProviderScope` (Riverpod), `MultiProvider` (Provider), dan `MultiBlocProvider` (BLoC) secara bersama-sama di root widget tree.
+- **`lib/app/config/`**: Konfigurasi global seperti routing menggunakan GoRouter.
+- **`lib/core/theme/`**: Design system aplikasi — warna (`AppColors`), tipografi (`AppTextStyles`), dan tema Material 3 (`AppTheme`). Digunakan secara konsisten di seluruh aplikasi.
+- **`lib/ui/features/`**: Folder fitur yang dibagi per domain. Setiap fitur memiliki sub-folder `views/` untuk UI dan folder terpisah untuk logika state (`view_models/`, `providers/`, atau `cubit/`) sesuai state management yang digunakan.
 
 ---
 
