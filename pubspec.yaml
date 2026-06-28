@@ -27,15 +27,17 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
-flutter_icons:
-  android: true
-  ios: true
+icons_launcher:
   image_path: "assets/images/logo.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 flutter_native_splash:
-  color: "#0a192f"
-  image: "assets/images/logo.png"
-  android: true
-  ios: true
+  color: "#0a192f" # Warna background splash screen
+  image: "assets/images/logo.png" # Gambar splash screen
+  android: true # Aktifkan di Android
+  ios: true # Aktifkan di iOS
 
