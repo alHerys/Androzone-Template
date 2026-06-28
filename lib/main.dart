@@ -7,6 +7,7 @@ import 'app/config/router.dart';
 import 'core/theme/app_theme.dart';
 import 'features/counter_provider/view_models/provider_counter_notifier.dart';
 import 'features/counter_bloc/cubit/bloc_counter_cubit.dart';
+import 'features/auth/view_models/auth_notifier.dart';
 
 void main() {
   // 1. Riverpod: Menggunakan ProviderScope di tingkat root untuk mengelola status
@@ -29,6 +30,9 @@ class MainAppRoot extends StatelessWidget {
       providers: [
         legacy_provider.ChangeNotifierProvider(
           create: (_) => ProviderCounterNotifier(),
+        ),
+        legacy_provider.ChangeNotifierProvider(
+          create: (_) => AuthNotifier(),
         ),
       ],
       // 3. BLoC: Menggunakan MultiBlocProvider untuk mendaftarkan Cubit/BLoC global.
