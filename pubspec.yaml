@@ -28,7 +28,7 @@ flutter:
     - assets/images/
     - assets/icons/
 icons_launcher:
-  image_path: "assets/images/logo.png"
+  image_path: "assets/icons/icon_launcher.png" # Gambar Launcher
   platforms:
     android:
       enable: true
@@ -36,8 +36,8 @@ icons_launcher:
       enable: true
 
 flutter_native_splash:
-  color: "#0a192f" # Warna background splash screen
-  image: "assets/images/logo.png" # Gambar splash screen
+  color: "#232323" # Warna background splash screen
+  image: "assets/images/splash_screen.png" # Gambar splash screen
   android: true # Aktifkan di Android
   ios: true # Aktifkan di iOS
 

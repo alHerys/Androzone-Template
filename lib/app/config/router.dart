@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/splash/views/splash_view.dart';
 import '../../features/onboarding/views/onboarding_view.dart';
 import '../../features/home/views/home_view.dart';
 import '../../features/counter_provider/views/provider_counter_view.dart';
@@ -8,13 +7,8 @@ import '../../features/counter_riverpod/views/riverpod_counter_view.dart';
 import '../../features/counter_bloc/views/bloc_counter_view.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/splash',
+  initialLocation: '/onboarding',
   routes: <RouteBase>[
-    GoRoute(
-      path: '/splash',
-      builder: (BuildContext context, GoRouterState state) =>
-          const SplashView(),
-    ),
     GoRoute(
       path: '/onboarding',
       builder: (BuildContext context, GoRouterState state) =>
