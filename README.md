@@ -4,17 +4,6 @@ Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 
 
 ---
 
-## Struktur Direktori
-
-Direktori proyek disusun menggunakan pendekatan berbasis fitur (*feature-first*) agar mudah dikembangkan dan dirapikan seiring bertambahnya modul.
-
-- **`lib/app/`**: Konfigurasi global aplikasi seperti pengaturan rute (*routing*) menggunakan GoRouter.
-- **`lib/core/`**: Bagian bersama yang mencakup desain sistem, tema warna, dan tipografi global.
-- **`lib/features/`**: Folder utama fitur aplikasi yang dibagi berdasarkan domain bisnis (seperti splash screen, onboarding, serta contoh fitur counter dan autentikasi).
-- **`assets/`**: Penyimpanan berkas statis gambar dan ikon aplikasi.
-
----
-
 ## Pembagian Branch Git
 
 Untuk mempermudah pembandingan, repositori ini memisahkan fitur autentikasi (*auth*) ke dalam beberapa branch terpisah sesuai pustaka pengelola status yang digunakan:
