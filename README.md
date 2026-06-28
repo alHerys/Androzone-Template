@@ -86,7 +86,7 @@ Untuk menghindari kegagalan pemuatan font karena masalah koneksi internet:
 Proyek ini menggunakan paket `icons_launcher` untuk memperbarui ikon aplikasi secara otomatis. 
 - **Persyaratan Aset**: Gunakan gambar persegi berformat PNG dengan resolusi minimal 512x512 piksel. Pastikan tidak ada area transparan pada pinggiran gambar agar ikon tampil maksimal pada perangkat Android.
 - **Cara Membuat**:
-  1. Siapkan logo Anda dan simpan di `assets/images/logo.png`.
+  1. Siapkan ikon Anda dan simpan di `assets/icons/icon_launcher.png`.
   2. Jalankan perintah berikut di terminal:
      ```bash
      dart run icons_launcher:create
@@ -96,15 +96,12 @@ Proyek ini menggunakan paket `icons_launcher` untuk memperbarui ikon aplikasi se
 Proyek ini menggunakan paket `flutter_native_splash` untuk memodifikasi splash screen bawaan perangkat.
 - **Persyaratan Aset**: Siapkan logo berformat PNG dengan resolusi minimal 1024x1024 piksel untuk diletakkan di bagian tengah layar.
 - **Cara Membuat**:
-  1. Sesuaikan konfigurasi warna latar belakang dan letak gambar pada bagian `flutter_native_splash` di dalam berkas `pubspec.yaml`.
-  2. Jalankan perintah berikut di terminal:
+  1. Siapkan gambar splash screen Anda dan simpan di `assets/images/splash_screen.png`.
+  2. Sesuaikan konfigurasi warna latar belakang dan letak gambar pada bagian `flutter_native_splash` di dalam berkas `pubspec.yaml`.
+  3. Jalankan perintah berikut di terminal:
      ```bash
      flutter pub run flutter_native_splash:create
      ```
-
-Tautan dokumentasi resmi untuk pengaturan ikon dan splash screen:
-- [Dokumentasi Resmi Icons Launcher](https://pub.dev/packages/icons_launcher)
-- [Dokumentasi Resmi Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 
 ---
 
