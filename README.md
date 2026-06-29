@@ -18,7 +18,7 @@ lib/
 │       ├── app_colors.dart            # Token warna global aplikasi
 │       ├── app_text_styles.dart       # Tipografi global aplikasi
 │       └── app_theme.dart             # Konfigurasi ThemeData Material 3
-├── data/                              # Direktori Data Layer (Model, Service, Repository - Kosong di main)
+├── data/                              # Direktori Data Layer (Model, Service, Repository)
 └── ui/
     └── features/
         ├── onboarding/
