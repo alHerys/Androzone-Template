@@ -4,6 +4,55 @@ Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 
 
 ---
 
+## Struktur direktori
+
+Proyek pada branch ini menggunakan arsitektur MVVM (Model-View-ViewModel) dengan pembagian folder berdasarkan fitur di bawah direktori `ui/`, serta pemisahan logika data ke dalam direktori `data/` (Data Layer).
+
+Berikut adalah pemetaan folder pada branch `feature/riverpod`:
+
+```
+lib/
+├── main.dart                          # Entry point aplikasi (Inisialisasi ProviderScope)
+├── app/
+│   └── config/
+│       └── router.dart                # Pengaturan rute menggunakan GoRouter
+├── core/
+│   └── theme/
+│       ├── app_colors.dart            # Token warna aplikasi
+│       ├── app_text_styles.dart       # Gaya tipografi aplikasi
+│       └── app_theme.dart             # Tema utama Material 3
+├── data/                              # Lapisan Data (Data Layer)
+│   ├── models/
+│   │   └── user.dart                  # Model data pengguna
+│   ├── services/
+│   │   └── auth_service.dart          # Layanan simulasi API autentikasi
+│   └── repositories/
+│       └── auth_repository.dart       # Repositori untuk konversi data ke model
+└── ui/
+    └── features/                      # Lapisan Tampilan (UI & State)
+        ├── onboarding/
+        │   └── views/
+        │       └── onboarding_view.dart
+        ├── auth/
+        │   ├── providers/
+        │   │   ├── auth_provider.dart # NotifierProvider untuk mengelola status auth
+        │   │   └── auth_state.dart    # Status state dari auth
+        │   └── views/
+        │       ├── login_view.dart
+        │       └── register_view.dart
+        └── dashboard/
+            └── views/
+                └── dashboard_view.dart
+```
+
+### Rincian folder utama
+
+- **`lib/main.dart`**: Titik masuk utama aplikasi. Bagian ini membungkus aplikasi dengan widget `ProviderScope` dari Riverpod untuk mengelola daur hidup status (states) di seluruh aplikasi.
+- **`lib/data/`**: Berisi model data (`User`), layanan API (`AuthService`), dan repositori (`AuthRepository`). Semua logika pengambilan data dari server berada di lapisan ini.
+- **`lib/ui/features/`**: Berisi halaman visual (views) dan pengelola status berupa Notifier. Logika tampilan dipisahkan dari detail cara data diambil dari server.
+
+---
+
 ## Pembagian Branch Git
 
 Untuk mempermudah pembandingan, repositori ini memisahkan fitur autentikasi (*auth*) ke dalam beberapa branch terpisah sesuai pustaka pengelola status yang digunakan:
