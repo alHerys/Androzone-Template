@@ -4,6 +4,55 @@ Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 
 
 ---
 
+## Struktur direktori
+
+Proyek pada branch ini menggunakan arsitektur MVVM (Model-View-ViewModel) dengan pembagian folder berdasarkan fitur di bawah direktori `ui/`, serta pemisahan logika data ke dalam direktori `data/` (Data Layer).
+
+Berikut adalah pemetaan folder pada branch `feature/bloc`:
+
+```
+lib/
+├── main.dart                          # Entry point aplikasi (Inisialisasi Bloc & Repository)
+├── app/
+│   └── config/
+│       └── router.dart                # Pengaturan rute menggunakan GoRouter
+├── core/
+│   └── theme/
+│       ├── app_colors.dart            # Token warna aplikasi
+│       ├── app_text_styles.dart       # Gaya tipografi aplikasi
+│       └── app_theme.dart             # Tema utama Material 3
+├── data/                              # Lapisan Data (Data Layer)
+│   ├── models/
+│   │   └── user.dart                  # Model data pengguna
+│   ├── services/
+│   │   └── auth_service.dart          # Layanan simulasi API autentikasi
+│   └── repositories/
+│       └── auth_repository.dart       # Repositori untuk konversi data ke model
+└── ui/
+    └── features/                      # Lapisan Tampilan (UI & State)
+        ├── onboarding/
+        │   └── views/
+        │       └── onboarding_view.dart
+        ├── auth/
+        │   ├── bloc/
+        │   │   ├── auth_cubit.dart    # Cubit untuk memproses logika bisnis auth
+        │   │   └── auth_state.dart    # Status state dari auth (Loading, Success, Failure)
+        │   └── views/
+        │       ├── login_view.dart
+        │       └── register_view.dart
+        └── dashboard/
+            └── views/
+                └── dashboard_view.dart
+```
+
+### Rincian folder utama
+
+- **`lib/main.dart`**: Titik masuk utama aplikasi. Bagian ini mendaftarkan `RepositoryProvider` untuk menyediakan `AuthRepository` dan `BlocProvider` untuk mengalirkan `AuthCubit` ke seluruh widget tree.
+- **`lib/data/`**: Berisi model data (`User`), layanan API (`AuthService`), dan repositori (`AuthRepository`). Semua urusan pengambilan data dan pengubahan format data mentah dilakukan di sini.
+- **`lib/ui/features/`**: Berisi halaman visual (views) dan pengelola status berupa Cubit. Logika tampilan dipisahkan dari detail cara data diambil dari server.
+
+---
+
 ## Pembagian Branch Git
 
 Untuk mempermudah pembandingan, repositori ini memisahkan fitur autentikasi (*auth*) ke dalam beberapa branch terpisah sesuai pustaka pengelola status yang digunakan:
