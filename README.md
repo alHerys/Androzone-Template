@@ -7,7 +7,6 @@ Proyek ini adalah template dasar Flutter untuk project Androzon Mobile Engineer 
 ## Struktur Direktori
  
 Direktori proyek disusun menggunakan pendekatan berbasis fitur (*feature-first*) agar mudah dikembangkan dan dirapikan seiring bertambahnya modul.
- 
 ```
 lib/
 ├── main.dart                          # Entry point aplikasi
@@ -19,6 +18,7 @@ lib/
 │       ├── app_colors.dart            # Token warna global aplikasi
 │       ├── app_text_styles.dart       # Tipografi global aplikasi
 │       └── app_theme.dart             # Konfigurasi ThemeData Material 3
+├── data/                              # Direktori Data Layer (Model, Service, Repository - Kosong di main)
 └── ui/
     └── features/
         ├── onboarding/
@@ -42,18 +42,20 @@ lib/
             │   └── bloc_counter_cubit.dart
             └── views/
                 └── bloc_counter_view.dart
- 
+
 assets/
 ├── images/          # Gambar dan splash screen
 └── icons/           # Ikon launcher aplikasi
 ```
- 
+
 ### Penjelasan Folder Utama
- 
+
 - **`lib/main.dart`**: Entry point aplikasi. Mendaftarkan `ProviderScope` (Riverpod), `MultiProvider` (Provider), dan `MultiBlocProvider` (BLoC) secara bersama-sama di root widget tree.
 - **`lib/app/config/`**: Konfigurasi global seperti routing menggunakan GoRouter.
 - **`lib/core/theme/`**: Design system aplikasi — warna (`AppColors`), tipografi (`AppTextStyles`), dan tema Material 3 (`AppTheme`). Digunakan secara konsisten di seluruh aplikasi.
+- **`lib/data/`**: Direktori Data Layer (mencakup Model, Service, dan Repository) untuk logika data aplikasi (pada branch `main` folder ini sengaja dibiarkan kosong sebagai kerangka struktur).
 - **`lib/ui/features/`**: Folder fitur yang dibagi per domain. Setiap fitur memiliki sub-folder `views/` untuk UI dan folder terpisah untuk logika state (`view_models/`, `providers/`, atau `cubit/`) sesuai state management yang digunakan.
+- **`assets/`**: Penyimpanan berkas statis gambar dan ikon aplikasi.
 
 ---
 
